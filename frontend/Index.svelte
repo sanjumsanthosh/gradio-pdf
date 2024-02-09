@@ -16,6 +16,7 @@
 		export let elem_classes: string[] = [];
 		export let visible = true;
 		export let value: FileData | null = null;
+		export let pageNumber: number = null;
 		export let container = true;
 		export let scale: number | null = null;
 		export let root: string;
@@ -35,7 +36,7 @@
 		let old_value = _value;
 		let pdfDoc;
 		let numPages = 1;
-		let currentPage = 1;
+		let currentPage = pageNumber !== null ? pageNumber : 1;
 		let canvasRef;
 
 		async function handle_clear() {
@@ -85,6 +86,15 @@
 			currentPage++;
 			render_page();
 		}
+
+		// function change_page(pageNumber) {
+		// 	if (pageNumber < 1 || pageNumber > numPages) {
+		// 		console.error('Invalid page number');
+		// 		return;
+		// 	}
+		// 	currentPage = pageNumber;
+		// 	render_page();
+		// }
 
 		function prev_page() {
 			if (currentPage == 1) {

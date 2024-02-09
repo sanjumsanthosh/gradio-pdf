@@ -47,7 +47,7 @@ repository = "https://github.com/freddyaboulton/gradio-pdf"
 space = "https://huggingface.co/spaces/freddyaboulton/gradio_pdf"
 
 [tool.hatch.build]
-artifacts = ["/backend/gradio_pdf/templates", "*.pyi", "backend/gradio_pdf/templates", "backend/gradio_pdf/templates"]
+artifacts = ["/backend/gradio_pdf/templates", "*.pyi", "backend/gradio_pdf/templates", "backend/gradio_pdf/templates", "backend/gradio_pdf/templates"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["/backend/gradio_pdf"]

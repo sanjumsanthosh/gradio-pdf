@@ -4,8 +4,9 @@
 	export let type: "gallery" | "table";
 	export let selected = false;
 	import pdfjsLib from "pdfjs-dist";
-	pdfjsLib.GlobalWorkerOptions.workerSrc =  "https://cdn.bootcss.com/pdf.js/3.11.174/pdf.worker.js";
-	
+	pdfjsLib.GlobalWorkerOptions.workerSrc =
+		"https://cdn.bootcss.com/pdf.js/3.11.174/pdf.worker.js";
+
 	let pdfDoc;
 	let canvasRef;
 
@@ -13,26 +14,26 @@
 		const loadingTask = pdfjsLib.getDocument(url);
 		pdfDoc = await loadingTask.promise;
 		renderPage();
-		}
+	}
 
 	function renderPage() {
 		// Render a specific page of the PDF onto the canvas
-			pdfDoc.getPage(1).then(page => {
-				const ctx  = canvasRef.getContext('2d')
-				ctx.clearRect(0, 0, canvasRef.width, canvasRef.height);
-				
-				const viewport = page.getViewport({ scale: 0.2 });
-				
-				const renderContext = {
-					canvasContext: ctx,
-					viewport
-				};
-				canvasRef.width = viewport.width;
-				canvasRef.height = viewport.height;
-				page.render(renderContext);
-			});
-		}
-	
+		pdfDoc.getPage(1).then((page) => {
+			const ctx = canvasRef.getContext("2d");
+			ctx.clearRect(0, 0, canvasRef.width, canvasRef.height);
+
+			const viewport = page.getViewport({ scale: 0.2 });
+
+			const renderContext = {
+				canvasContext: ctx,
+				viewport,
+			};
+			canvasRef.width = viewport.width;
+			canvasRef.height = viewport.height;
+			page.render(renderContext);
+		});
+	}
+
 	$: get_doc(samples_dir + value);
 </script>
 
